@@ -54,6 +54,7 @@ public class ValidTestController {
 
     }
 
+
     @PostMapping("/users")
     public ResponseEntity<?> registYser(@Valid @RequestBody UserDTO newUser){
 
