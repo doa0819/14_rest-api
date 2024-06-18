@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionController {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(UserNotFoundException e){
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException e){
 
         String code = "ERROR_CODE_0001";
-        String description = "회원 정보 조회에 실패하셨습니다.";
+        String description = "정보 조회에 실패하셨습니다.";
         String detail = e.getMessage();
 
         return new ResponseEntity<>(new ErrorResponse(code,description,detail), HttpStatus.NOT_FOUND);

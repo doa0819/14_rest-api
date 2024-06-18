@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +44,22 @@ public class JpaTestController {
 
 
         return new ResponseEntity<>(responseMessage,HttpStatus.OK);
+
+    }
+
+    @GetMapping(value = "/menu/{menuCode}", produces = "application/json; charset=UTF-8")
+    @Operation(summary = "메뉴 상세 조회", description = "메뉴 코드로 메뉴 상세 조회")
+    public ResponseEntity<ResponseMessage> findMenuByCode(@PathVariable int menuCode){
+
+        MenuDTO menuList = menuService.findMenu(menuCode);
+
+        MenuDTO foundMenu = menuList.
+
+
+
+
+
+
 
     }
 

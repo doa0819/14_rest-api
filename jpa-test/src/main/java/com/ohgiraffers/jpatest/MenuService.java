@@ -29,4 +29,11 @@ public class MenuService {
                 .map(menu -> modelMapper.map(menu, MenuDTO.class))
                 .collect(Collectors.toList());
     }
+
+
+    public MenuDTO findMenu(int menuCode) {
+
+        Menu menuList = menuRepository.findById(menuCode).orElseThrow(IllegalAccessError::new);
+        return modelMapper.map(menuList , MenuDTO.class);
+    }
 }
