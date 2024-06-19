@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +18,7 @@ import java.util.Map;
 public class JpaTestController {
 
     private final MenuService menuService;
+    private List<MenuDTO> menus;
 
     @Autowired
     public JpaTestController(MenuService menuService){
@@ -53,17 +51,29 @@ public class JpaTestController {
 
         MenuDTO menuList = menuService.findMenu(menuCode);
 
-        MenuDTO foundMenu = menuList.
+        // stream.filter 를 안쓴 이유는 service 로 menuCode 만 보내줘서 뽑아내기 때문에
+        // menuList 안에 menuCode만 들어 있다.
+
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("menu", menuList);
+
+        return ResponseEntity.ok()
+                .body(new ResponseMessage(200,"조회 성공",responseMap));
+
+    }
+
+    @Operation(summary = "새로운 메뉴 등록", description = "새로운 메뉴 등록하기")
+    @PostMapping(value = "/menu", produces = "application/json; charset=UTF-8")
+    public ResponseEntity<ResponseMessage> registMenu(@RequestBody MenuDTO newMenu){
 
 
+        menuService.registMenu(newMenu);
 
 
 
 
 
     }
-
-
 
 
 

@@ -33,7 +33,7 @@ public class MenuService {
 
     public MenuDTO findMenu(int menuCode) {
 
-        Menu menuList = menuRepository.findById(menuCode).orElseThrow(IllegalAccessError::new);
+        Menu menuList = menuRepository.findById(menuCode).orElseThrow(IllegalArgumentException::new);
         return modelMapper.map(menuList , MenuDTO.class);
     }
 }

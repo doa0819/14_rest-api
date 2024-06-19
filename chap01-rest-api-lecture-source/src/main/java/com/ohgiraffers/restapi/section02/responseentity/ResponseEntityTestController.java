@@ -69,7 +69,7 @@ public class ResponseEntityTestController {
 
     @PostMapping( "/users")
     // <?> -> 반환 타입이 머인지 모를때 (권장XX)
-    // @RequestBody : post   // @RequestParam : 쿼리가 있을때 값 받아오는거 (예) form method ="get")
+    // @RequestBody : post   // @RequestParam : 폼,쿼리가 있을때 값 받아오는거 (예) form method ="get")
     // @ResponseBody -> controller -> view 데이터나감  @RequestBody : view -> controller
     //
     public ResponseEntity <?> regist(@RequestBody UserDTO newUser){
